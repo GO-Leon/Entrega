@@ -9,6 +9,8 @@ TagManager:
   - Player2
   - Player1
   - EnemyBullet
+  - Axe
+  - GameOver
   layers:
   - Default
   - TransparentFX

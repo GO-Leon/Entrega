@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player2Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer2;
     private Rigidbody rb;
+
+    /// EVENTOS
+    public static event Action onDeath;
 
     void Start()
     {
@@ -36,6 +40,7 @@ public class Player2Controller : PlayerController
 
     }
 
+
     protected void MovePlayer2()
     {
         float ejeVertical = Input.GetAxisRaw("Vertical");
@@ -57,5 +62,16 @@ public class Player2Controller : PlayerController
         Debug.Log(pData.playerName + " salto");
         rb.AddForce(0, 1 * pData.jumpForce, 0);
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyBullet"))
+        {
+            //Destroy(collision.gameObject);
+            Debug.Log("Daño recibido");
+            onDeath?.Invoke();
 
+        }
+
+
+    }
 }

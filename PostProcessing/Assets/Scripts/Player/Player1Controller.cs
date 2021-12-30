@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player1Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer;
 
+    /// EVENTOS
+    public static event Action onDeath;
+
     void Start()
     {
         animPlayer.SetBool("isRun", false);
+        
     }
 
     public override void Update()
@@ -33,8 +38,10 @@ public class Player1Controller : PlayerController
     {
         if (collision.gameObject.CompareTag("EnemyBullet"))
         {
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
             Debug.Log("Daño recibido");
+            onDeath?.Invoke(); 
+           
         }
     }
 

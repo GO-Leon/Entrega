@@ -13,6 +13,10 @@ public class TextController : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     void Start()
     {
         coin.text = ("x 0");
