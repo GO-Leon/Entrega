@@ -5,11 +5,14 @@ using UnityEngine;
 public class P1PowerUps : MonoBehaviour
 {
     private InventoryManager p1Inventory;
+    public Player1Controller grabWeapons;
+    public int weaponsNumber;
 
     // Start is called before the first frame update
     void Start()
     {
         p1Inventory = GetComponent<InventoryManager>();
+        grabWeapons = GameObject.FindGameObjectWithTag("Player1").GetComponent<Player1Controller>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class P1PowerUps : MonoBehaviour
             GameObject powerUp = other.gameObject;
             powerUp.SetActive(false);
            p1Inventory.AddInventoryPOne(powerUp);
+            grabWeapons.ActivateWeapons(weaponsNumber);
 
         }
     }

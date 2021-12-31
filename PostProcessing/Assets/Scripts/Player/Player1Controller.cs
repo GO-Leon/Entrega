@@ -7,6 +7,7 @@ public class Player1Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer;
     public GameObject colliderAttack;
+    public GameObject[] weapons;
 
     /// EVENTOS
     public static event Action onDeath;
@@ -72,6 +73,15 @@ public class Player1Controller : PlayerController
         {
             animPlayer.SetBool("isRun", false);
         }
+    }
+// Agarrar armas
+    public void ActivateWeapons(int numArma)
+    {
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            weapons[i].SetActive(false);
+        }
+        weapons[numArma].SetActive(true);
     }
 }
     
