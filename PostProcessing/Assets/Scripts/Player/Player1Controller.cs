@@ -6,9 +6,11 @@ using System;
 public class Player1Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer;
+    public GameObject colliderAttack;
 
     /// EVENTOS
     public static event Action onDeath;
+    public static event Action <int> onHurt;
 
     void Start()
     {
@@ -25,8 +27,12 @@ public class Player1Controller : PlayerController
             RotatePlayer();
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("  habilidad player 1 ");
+                Debug.Log("Habilidad player 1");
                 animPlayer.SetTrigger("Attack");
+                colliderAttack.SetActive(true);
+            }
+            else{
+                colliderAttack.SetActive(false);
             }
         }
 
@@ -36,11 +42,18 @@ public class Player1Controller : PlayerController
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-           // Destroy(collision.gameObject);
-            Debug.Log("Daño recibido");
-            onDeath?.Invoke(); 
+            lifePlayer--;
+            Destroy(collision.gameObject);
+            Debug.Log("Dano recibido");
+            onHurt?.Invoke(lifePlayer); 
+            
+            if (lifePlayer == 0)
+            {
+                onDeath?.Invoke(); 
+            }
+
            
         }
     }

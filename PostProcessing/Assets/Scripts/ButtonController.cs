@@ -9,7 +9,7 @@ public class ButtonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        showingObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class ButtonController : MonoBehaviour
         if ((other.gameObject.CompareTag("Player2")))
         {
             showingObject.SetActive(true);
-            Debug.Log("on");
+            Debug.Log("Puente activado");
 
         }
        
@@ -32,7 +32,7 @@ public class ButtonController : MonoBehaviour
         if ((other.gameObject.CompareTag("Player2")))
         {
             showingObject.SetActive(false);
-            Debug.Log("off");
+            Debug.Log("Puente desactivado");
         }
     }
 

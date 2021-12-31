@@ -10,6 +10,7 @@ public class Player2Controller : PlayerController
 
     /// EVENTOS
     public static event Action onDeath;
+    public static event Action <int> onHurt;
 
     void Start()
     {
@@ -64,14 +65,18 @@ public class Player2Controller : PlayerController
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("EnemyBullet"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Destroy(collision.gameObject);
-            Debug.Log("Daño recibido");
-            onDeath?.Invoke();
+            lifePlayer--;
+            Destroy(collision.gameObject);
+            Debug.Log("Dano recibido");
+            onHurt?.Invoke(lifePlayer); 
+            if (lifePlayer == 0)
+            {
+                onDeath?.Invoke(); 
+            }
 
+           
         }
-
-
     }
 }

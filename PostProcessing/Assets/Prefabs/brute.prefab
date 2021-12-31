@@ -616,9 +616,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8097961119235071337}
   - component: {fileID: 7410553938874554608}
+  - component: {fileID: 7501281704495087477}
   m_Layer: 0
   m_Name: BattleAxe_GEO
-  m_TagString: Untagged
+  m_TagString: Axe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -706,6 +707,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.6045573, y: -0.073543325, z: 0.32172823}
     m_Extent: {x: 0.3680054, y: 0.08618121, z: 0.73800075}
   m_DirtyAABB: 0
+--- !u!64 &7501281704495087477
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2273853954575185963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4735245474628318203, guid: 46000573fd821ec40916955da9d4aa04, type: 3}
 --- !u!1 &2482142720605353453
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ public class WallController : MonoBehaviour
 {
     [SerializeField] float collisionTH = 1f;
     private float collisionTime = 5f;
-    [SerializeField] private GameObject hammer;
     [SerializeField] private ParticleSystem breakParticle;
 
     int index;
@@ -28,11 +27,22 @@ public class WallController : MonoBehaviour
 
 
         }
+        
     }
 
+        private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            collisionTime = 0.0f;
+            Debug.Log("Atacaste la pared");
+            breakParticle.Stop();
+        }
+    }
+/*
     private void OnCollisionEnter(Collision collision)
     {
-        if ((collision.gameObject.CompareTag("Player1")))
+        if ((collision.gameObject.CompareTag("Axe")))
         {
             collisionTime = 0.0f;
             Debug.Log("colision");
@@ -42,10 +52,11 @@ public class WallController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if ((collision.gameObject.CompareTag("Player")))
+        if ((collision.gameObject.CompareTag("Axe")))
         {
             collisionTime = 5.0f;
             breakParticle.Stop();
         }
     }
+    */
 }

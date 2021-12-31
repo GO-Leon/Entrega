@@ -18,7 +18,8 @@ public class CannonController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {if (canshoot) {
+    {
+        if (canshoot) {
         RaycastShoot();
     }
     else

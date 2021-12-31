@@ -8,6 +8,9 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private GameObject shootPoint;
     [SerializeField] private GameObject enemyBulletPrefab;
     [SerializeField] private Animator animEnemyShooter;
+    [SerializeField] private int lifeShooter = 1;
+    [SerializeField] float collisionEnemy = 1f;
+    private float collisionEnemyTime = 5f;
     //[SerializeField] private float distanceRay = 20f;
     //[SerializeField] private int coolDown = 4;
     //[SerializeField] private float timeShoot = 4;
@@ -20,7 +23,10 @@ public class EnemyBullet : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {if (eData.canshoot) {
+    
+    {
+        if(lifeShooter>0){
+                    if (eData.canshoot)  {
         RaycastShoot();
     }
     else
@@ -31,6 +37,19 @@ public class EnemyBullet : MonoBehaviour
     {
             eData.canshoot = true;
     }
+        }
+
+        
+        collisionEnemyTime += Time.deltaTime;
+        if (collisionEnemy < collisionEnemyTime && collisionEnemyTime < 3f)
+        {
+            
+            animEnemyShooter.SetTrigger("isDead");
+            lifeShooter--;
+            //breakParticle.Play();
+
+
+        }
         
     }
 
@@ -57,5 +76,15 @@ public class EnemyBullet : MonoBehaviour
     { 
         Gizmos.color = Color.green;
         Gizmos.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward) * eData.distanceRay);
+    }
+
+        private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            collisionEnemyTime = 0.0f;
+            Debug.Log("Atacaste al enemigo");
+            //breakParticle.Stop();
+        }
     }
 }

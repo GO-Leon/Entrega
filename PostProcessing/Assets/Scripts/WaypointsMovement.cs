@@ -15,6 +15,10 @@ public class WaypointsMovement : MonoBehaviour
     [SerializeField] float enemyView;
     [SerializeField] private Animator animBoss;
     [SerializeField] float enemyDistance;
+    [SerializeField] float collisionBoss = 1f;
+    private float collisionBossTime = 5f;
+    [SerializeField] private int lifeBoss = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,8 @@ public class WaypointsMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, character.transform.position) <= enemyView)
+        if(lifeBoss>0){
+                  if (Vector3.Distance(transform.position, character.transform.position) <= enemyView)
         {
             iSeeCharacter = true;
         }
@@ -48,12 +53,28 @@ public class WaypointsMovement : MonoBehaviour
         {
             animBoss.SetTrigger("enemyAttack");
         }
+
+
+
+        collisionBossTime += Time.deltaTime;
+        if (collisionBoss < collisionBossTime && collisionBossTime < 3f)
+        {
+            
+            animBoss.SetTrigger("isDeadBoss");
+            lifeBoss--;
+            //breakParticle.Play();
+
+
+        }  
+        }
+
+
     }
 
     private bool iSeeCharacter = false;
     private void Pursuit()
     {
-        Debug.Log("Perseguir al heroe");
+        //Debug.Log("Perseguir al heroe");
         Vector3 direction = (character.transform.position - transform.position).normalized;
         transform.forward = Vector3.Lerp(transform.forward, direction, rotationSpeed * Time.deltaTime);
         transform.position += transform.forward * pursuitSpeed * Time.deltaTime;
@@ -88,5 +109,15 @@ public class WaypointsMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemyView);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Axe"))
+        {
+            collisionBossTime = 0.0f;
+            Debug.Log("Atacaste al Boss");
+            //breakParticle.Stop();
+        }
     }
 }

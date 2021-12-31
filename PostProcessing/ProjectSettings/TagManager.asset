@@ -11,6 +11,7 @@ TagManager:
   - EnemyBullet
   - Axe
   - GameOver
+  - Enemy
   layers:
   - Default
   - TransparentFX
