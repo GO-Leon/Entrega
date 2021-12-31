@@ -1800,13 +1800,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 447013111}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -403.41644, y: 607.58575, z: -55.44003}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0.7071068, w: 0}
+  m_LocalPosition: {x: -385.7, y: 607.58575, z: -54.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1558316367}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
 --- !u!114 &447013114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2238,13 +2238,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475697097}
-  m_LocalRotation: {x: 0.3555623, y: -0.24064584, z: 0.09527261, w: 0.8981026}
-  m_LocalPosition: {x: -333.11642, y: 556.28577, z: -131.14003}
+  m_LocalRotation: {x: 0.11816304, y: -0.6927673, z: 0.12078595, w: 0.70108616}
+  m_LocalPosition: {x: -277.5, y: 512.1, z: -37.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1558316367}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 43.198, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 19.453, y: -89.257, z: 0.343}
 --- !u!4 &487345254 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1530657831778517567, guid: b97ed7e5c41f9d04f8bcaaeb9b568bc6, type: 3}
@@ -7313,15 +7313,10 @@ MonoBehaviour:
   - {fileID: 947676642}
   - {fileID: 475697097}
   - {fileID: 447013111}
-  airCamerasP1:
-  - {fileID: 0}
-  - {fileID: 475697097}
-  - {fileID: 447013111}
   airCamerasP2:
   - {fileID: 947676642}
   - {fileID: 475697097}
   - {fileID: 447013111}
-  indexCameraP1: 0
   indexCameraP2: 0
   pOne: 1
 --- !u!4 &1564556345
