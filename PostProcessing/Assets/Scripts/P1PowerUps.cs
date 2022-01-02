@@ -18,10 +18,13 @@ public class P1PowerUps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /* Comando para deshacerte del power up
+        
         if (Input.GetKeyDown(KeyCode.Z))
         {
             UsePowerUp();
         }
+        */
         
     }
     private void OnTriggerEnter(Collider other)

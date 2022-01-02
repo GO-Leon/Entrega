@@ -11,10 +11,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private int lifeShooter = 1;
     [SerializeField] float collisionEnemy = 1f;
     private float collisionEnemyTime = 5f;
-    //[SerializeField] private float distanceRay = 20f;
-    //[SerializeField] private int coolDown = 4;
-    //[SerializeField] private float timeShoot = 4;
-    //private bool canshoot = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,24 +43,32 @@ public class EnemyBullet : MonoBehaviour
             
             animEnemyShooter.SetTrigger("isDead");
             lifeShooter--;
-            //breakParticle.Play();
 
 
         }
+
         
     }
 
     private void RaycastShoot()
     {
         RaycastHit hit;
-       if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay))
+       if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay) && (hit.transform.tag == "Player1"))
        {
-           Debug.Log("Player detectado");
+           Debug.Log("Player1 detectado");
             eData.canshoot = false;
             eData.timeShoot = 0;
            GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
            b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
-            //animEnemyShooter.SetBool("isThere", true);
+            animEnemyShooter.SetTrigger("isTiro");
+        }
+        else if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay) && (hit.transform.tag == "Player2"))
+         {
+            Debug.Log("Player2 detectado");
+            eData.canshoot = false;
+            eData.timeShoot = 0;
+           GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
+           b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
             animEnemyShooter.SetTrigger("isTiro");
         }
        else
@@ -84,7 +89,9 @@ public class EnemyBullet : MonoBehaviour
         {
             collisionEnemyTime = 0.0f;
             Debug.Log("Atacaste al enemigo");
-            //breakParticle.Stop();
         }
     }
+
+
+
 }

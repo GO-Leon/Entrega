@@ -74,9 +74,20 @@ public class Player2Controller : PlayerController
             if (lifePlayer == 0)
             {
                 onDeath?.Invoke(); 
+                animPlayer2.SetTrigger("isP2Dead");
             }
 
            
         }
+        
+        if (collision.gameObject.CompareTag("Water"))
+        { 
+            lifePlayer = 0;
+            onDeath?.Invoke(); 
+            animPlayer2.SetTrigger("isP2Dead");
+           
+        }
     }
+    
+
 }

@@ -12,6 +12,8 @@ TagManager:
   - Axe
   - GameOver
   - Enemy
+  - EnemyPunch
+  - Water
   layers:
   - Default
   - TransparentFX

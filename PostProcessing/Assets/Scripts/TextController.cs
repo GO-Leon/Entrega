@@ -8,7 +8,8 @@ public class TextController : MonoBehaviour
 {
     [SerializeField] private Text coins;
     [SerializeField] private GameManager gm;
-    [SerializeField] private TextMeshProUGUI textLives;
+    [SerializeField] private TextMeshProUGUI textLivesP1;
+    [SerializeField] private TextMeshProUGUI textLivesP2;
     [SerializeField] private TextMeshProUGUI coin;
 
 
@@ -20,8 +21,8 @@ public class TextController : MonoBehaviour
     void Start()
     {
         coin.text = ("x 0");
-        Player1Controller.onHurt += OnHurtHandler;
-        Player2Controller.onHurt += OnHurtHandler;
+        Player1Controller.onHurt += OnHurtHandlerP1;
+        Player2Controller.onHurt += OnHurtHandlerP2;
         Player1Controller.onDeath += OnDeathHandler;
         Player2Controller.onDeath += OnDeathHandler;
 
@@ -30,12 +31,18 @@ public class TextController : MonoBehaviour
 
     private void OnDeathHandler()
     {
-        textLives.text = "GAME OVER";
+        textLivesP1.text = "GAME OVER";
+        textLivesP2.text = "GAME OVER";
     }
 
-    private void OnHurtHandler(int lives)
+    private void OnHurtHandlerP1(int lives)
     {
-        textLives.text = "Lives: " + lives;
+        textLivesP1.text = "Brute : " + lives;
+    }
+
+    private void OnHurtHandlerP2(int lives)
+    {
+        textLivesP2.text = "Jumper : " + lives;
     }
 
     // Update is called once per frame

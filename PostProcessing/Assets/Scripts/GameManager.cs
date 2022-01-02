@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
    
     private int coinsInstance;
-    public enum itemType { Martillo, Escudo};
+    //public enum itemType { Martillo, Escudo};
 
   
             private void Awake()

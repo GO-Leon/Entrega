@@ -18,6 +18,10 @@ public class WaypointsMovement : MonoBehaviour
     [SerializeField] float collisionBoss = 1f;
     private float collisionBossTime = 5f;
     [SerializeField] private int lifeBoss = 1;
+    public GameObject colliderPunch;
+    [SerializeField] protected EnemyData eData;
+    [SerializeField] private GameObject shootPoint;
+    [SerializeField] private GameObject enemyBulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +46,21 @@ public class WaypointsMovement : MonoBehaviour
         {
             Pursuit();
             animBoss.SetBool("isCharacter", true);
+            colliderPunch.SetActive(false);
         }
         else
         {
             WPMovement();
             animBoss.SetBool("isCharacter", false);
+            colliderPunch.SetActive(false);
         }
         
         if (Vector3.Distance(transform.position, character.transform.position) <= enemyDistance)
         {
-            animBoss.SetTrigger("enemyAttack");
+            animBoss.SetTrigger("bossAttack");
+            
         }
+
 
 
 
@@ -120,4 +128,31 @@ public class WaypointsMovement : MonoBehaviour
             //breakParticle.Stop();
         }
     }
+
+
+
+
+private void RaycastShootBoss()
+    {
+        RaycastHit hit;
+       if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay))
+       {
+           Debug.Log("Player detectado");
+            eData.canshoot = false;
+            eData.timeShoot = 0;
+           GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
+           b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
+            animBoss.SetTrigger("bossAttack");
+        }
+       else
+        {
+            eData.canshoot = true;
+        }
+    }
+    private void OnDrawGizmosBoss()
+    { 
+        Gizmos.color = Color.green;
+        Gizmos.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward) * eData.distanceRay);
+    }
+
 }
