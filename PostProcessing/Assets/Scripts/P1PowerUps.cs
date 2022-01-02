@@ -7,6 +7,7 @@ public class P1PowerUps : MonoBehaviour
     private InventoryManager p1Inventory;
     public Player1Controller grabWeapons;
     public int weaponsNumber;
+    [SerializeField] GameObject weaponAxe;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +19,13 @@ public class P1PowerUps : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /* Comando para deshacerte del power up
+        // Comando para deshacernos del power up
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
             UsePowerUp();
         }
-        */
+        
         
     }
     private void OnTriggerEnter(Collider other)
@@ -45,5 +46,6 @@ public class P1PowerUps : MonoBehaviour
         GameObject powerUp = p1Inventory.GetInventoryPOne();
         powerUp.SetActive(true);
         powerUp.transform.position = transform.position + new Vector3(0f,1f,-5f);
+        weaponAxe.SetActive(false);
     }
 }

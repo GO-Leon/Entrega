@@ -58,13 +58,15 @@ public class Player1Controller : PlayerController
 
            
         }
+    }
 
-            if (collision.gameObject.CompareTag("Water"))
-        { 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Water"))
+        {
             lifePlayer = 0;
             onDeath?.Invoke(); 
             animPlayer.SetTrigger("isP1Dead");
-           
         }
     }
 

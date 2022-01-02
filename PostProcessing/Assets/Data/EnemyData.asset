@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   distanceRay: 20
-  coolDown: 2
-  timeShoot: 2.000612
+  coolDown: 4
+  timeShoot: 4.0060654
   canshoot: 1

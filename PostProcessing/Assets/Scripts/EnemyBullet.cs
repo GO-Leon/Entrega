@@ -12,10 +12,11 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] float collisionEnemy = 1f;
     private float collisionEnemyTime = 5f;
 
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -61,6 +62,7 @@ public class EnemyBullet : MonoBehaviour
            GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
            b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
             animEnemyShooter.SetTrigger("isTiro");
+
         }
         else if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay) && (hit.transform.tag == "Player2"))
          {
@@ -91,7 +93,6 @@ public class EnemyBullet : MonoBehaviour
             Debug.Log("Atacaste al enemigo");
         }
     }
-
 
 
 }

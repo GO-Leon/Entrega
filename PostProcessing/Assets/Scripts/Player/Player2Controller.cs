@@ -16,6 +16,7 @@ public class Player2Controller : PlayerController
     {
         animPlayer2.SetBool("isRun2", false);
         rb = GetComponent<Rigidbody>();
+        Debug.Log("Utiliza el tercer ojo de Jumper para planificar la estrategia presionando Tab / P");
 
     }
 

@@ -39,24 +39,4 @@ public class WallController : MonoBehaviour
             breakParticle.Stop();
         }
     }
-/*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if ((collision.gameObject.CompareTag("Axe")))
-        {
-            collisionTime = 0.0f;
-            Debug.Log("colision");
-            breakParticle.Stop();
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if ((collision.gameObject.CompareTag("Axe")))
-        {
-            collisionTime = 5.0f;
-            breakParticle.Stop();
-        }
-    }
-    */
 }
