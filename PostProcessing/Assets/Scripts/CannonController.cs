@@ -10,6 +10,7 @@ public class CannonController : MonoBehaviour
     private bool canshoot = true;
     [SerializeField] private GameObject cannonBulletPrefab;
     [SerializeField] private ParticleSystem shootParticle;
+    [SerializeField] private AudioSource cannonSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +45,7 @@ public class CannonController : MonoBehaviour
            GameObject b = Instantiate(cannonBulletPrefab, shootPoint.transform.position, cannonBulletPrefab.transform.rotation);
            b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 40f, ForceMode.Impulse);
             shootParticle.Play();
+            cannonSound.Play();
         }
        else
         {

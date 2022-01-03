@@ -6,8 +6,14 @@ using System;
 public class Player1Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer;
-    public GameObject colliderAttack;
-    public GameObject[] weapons;
+    [SerializeField] private GameObject colliderAttack;
+    [SerializeField] private GameObject[] weapons;
+    [SerializeField] private AudioSource attackSound;
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource hurtSound;
+    [SerializeField] private float delayTime = 1.0f;
+
+
 
     /// EVENTOS
     public static event Action onDeath;
@@ -16,7 +22,8 @@ public class Player1Controller : PlayerController
     void Start()
     {
         animPlayer.SetBool("isRun", false);
-        
+       
+
     }
 
     public override void Update()
@@ -31,16 +38,22 @@ public class Player1Controller : PlayerController
                 Debug.Log("Habilidad player 1");
                 animPlayer.SetTrigger("Attack");
                 colliderAttack.SetActive(true);
+                Invoke("PlayAudio", delayTime);
+
             }
-            else{
+            else
+            {
                 colliderAttack.SetActive(false);
             }
+          
         }
+       }
 
-
-
-
+    private void PlayAudio()
+    {
+        attackSound.Play();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -48,10 +61,12 @@ public class Player1Controller : PlayerController
             lifePlayer--;
             Destroy(collision.gameObject);
             Debug.Log("Dano recibido");
-            onHurt?.Invoke(lifePlayer); 
-            
+            onHurt?.Invoke(lifePlayer);
+            hurtSound.Play();
+
             if (lifePlayer == 0)
             {
+                deathSound.Play();
                 onDeath?.Invoke(); 
                 animPlayer.SetTrigger("isP1Dead");
             }
@@ -64,8 +79,10 @@ public class Player1Controller : PlayerController
     {
         if (other.gameObject.CompareTag("Water"))
         {
+            deathSound.Play();
             lifePlayer = 0;
-            onDeath?.Invoke(); 
+            onDeath?.Invoke();
+            
             animPlayer.SetTrigger("isP1Dead");
         }
     }
@@ -96,6 +113,8 @@ public class Player1Controller : PlayerController
         }
         weapons[numArma].SetActive(true);
     }
+
+  
 }
     
 

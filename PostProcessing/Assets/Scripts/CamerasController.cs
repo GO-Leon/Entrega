@@ -31,7 +31,9 @@ public class CamerasController : MonoBehaviour
                 cameras[1].SetActive(false);
                 cameras[2].SetActive(false);
                 cameras[3].SetActive(false);
-                
+                transform.position = cameras[0].transform.position;
+
+
             }
             else
             {
@@ -39,6 +41,7 @@ public class CamerasController : MonoBehaviour
                 cameras[1].SetActive(true);
                 cameras[2].SetActive(false);
                 cameras[3].SetActive(false);
+                transform.position = cameras[1].transform.position;
             }
         }
 

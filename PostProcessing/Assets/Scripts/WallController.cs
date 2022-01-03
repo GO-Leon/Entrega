@@ -7,6 +7,7 @@ public class WallController : MonoBehaviour
     [SerializeField] float collisionTH = 1f;
     private float collisionTime = 5f;
     [SerializeField] private ParticleSystem breakParticle;
+    [SerializeField] private AudioSource glassSound;
 
     int index;
     // Start is called before the first frame update
@@ -24,8 +25,7 @@ public class WallController : MonoBehaviour
             
             Destroy(gameObject);
             breakParticle.Play();
-
-
+                     
         }
         
     }
@@ -34,9 +34,24 @@ public class WallController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Axe"))
         {
+            
             collisionTime = 0.0f;
             Debug.Log("Atacaste la pared");
             breakParticle.Stop();
+
+            glassSound.Play();
+
         }
     }
+
+
+  
+
+        
 }
+
+        
+
+    
+
+   

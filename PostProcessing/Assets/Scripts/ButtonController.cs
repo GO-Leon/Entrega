@@ -5,6 +5,8 @@ using UnityEngine;
 public class ButtonController : MonoBehaviour
 {
     [SerializeField] GameObject showingObject;
+    [SerializeField] private AudioSource bridgeSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class ButtonController : MonoBehaviour
         {
             showingObject.SetActive(true);
             Debug.Log("Puente activado");
+            bridgeSound.Play();
 
         }
        

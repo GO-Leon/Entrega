@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class ButtonBridgeController : MonoBehaviour
 {
     [SerializeField] private UnityEvent onActiveBridge;
+    [SerializeField] private AudioSource bridgeSound;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class ButtonBridgeController : MonoBehaviour
         if (other.gameObject.CompareTag("Player2"))
         {
             onActiveBridge.Invoke();
+            bridgeSound.Play();
         }
     }
 }

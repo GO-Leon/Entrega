@@ -10,6 +10,8 @@ public class CannonButton : MonoBehaviour
     [SerializeField] private ParticleSystem cannonsParticle2;
     [SerializeField] private ParticleSystem cannonsParticle3;
     [SerializeField] private ParticleSystem cannonsParticle4;
+    [SerializeField] private AudioSource bridgeSound;
+
 
 
     void Start()
@@ -36,6 +38,7 @@ public class CannonButton : MonoBehaviour
             cannonsParticle3.Play();
             cannonsParticle4.Play();
             Debug.Log("Explosivos activados");
+            bridgeSound.Play();
         }
     }
 

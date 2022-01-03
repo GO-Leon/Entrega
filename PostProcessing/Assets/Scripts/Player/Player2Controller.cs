@@ -7,6 +7,9 @@ public class Player2Controller : PlayerController
 {
     [SerializeField] private Animator animPlayer2;
     private Rigidbody rb;
+    [SerializeField] private AudioSource jumpSound;
+    [SerializeField] private AudioSource deathSound;
+    [SerializeField] private AudioSource hurtSound;
 
     /// EVENTOS
     public static event Action onDeath;
@@ -33,6 +36,8 @@ public class Player2Controller : PlayerController
                 {
                     Jump();
                     animPlayer2.SetTrigger("Jump");
+                    jumpSound.Play();
+
                 }
             }
         }
@@ -71,9 +76,11 @@ public class Player2Controller : PlayerController
             lifePlayer--;
             Destroy(collision.gameObject);
             Debug.Log("Dano recibido");
-            onHurt?.Invoke(lifePlayer); 
+            onHurt?.Invoke(lifePlayer);
+            hurtSound.Play();
             if (lifePlayer == 0)
             {
+                deathSound.Play();
                 onDeath?.Invoke(); 
                 animPlayer2.SetTrigger("isP2Dead");
             }
@@ -82,7 +89,8 @@ public class Player2Controller : PlayerController
         }
         
         if (collision.gameObject.CompareTag("Water"))
-        { 
+        {
+            deathSound.Play();
             lifePlayer = 0;
             onDeath?.Invoke(); 
             animPlayer2.SetTrigger("isP2Dead");

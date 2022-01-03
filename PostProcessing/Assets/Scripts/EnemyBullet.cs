@@ -10,6 +10,7 @@ public class EnemyBullet : MonoBehaviour
     [SerializeField] private Animator animEnemyShooter;
     [SerializeField] private int lifeShooter = 1;
     [SerializeField] float collisionEnemy = 1f;
+    [SerializeField] AudioSource enemySound;
     private float collisionEnemyTime = 5f;
 
 
@@ -62,6 +63,7 @@ public class EnemyBullet : MonoBehaviour
            GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
            b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
             animEnemyShooter.SetTrigger("isTiro");
+            enemySound.Play();
 
         }
         else if (Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out hit, eData.distanceRay) && (hit.transform.tag == "Player2"))
@@ -72,6 +74,8 @@ public class EnemyBullet : MonoBehaviour
            GameObject b = Instantiate(enemyBulletPrefab, shootPoint.transform.position, enemyBulletPrefab.transform.rotation);
            b.GetComponent<Rigidbody>().AddForce(shootPoint.transform.TransformDirection(Vector3.forward) * 30f, ForceMode.Impulse);
             animEnemyShooter.SetTrigger("isTiro");
+            enemySound.Play();
+
         }
        else
         {
