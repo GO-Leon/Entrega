@@ -3,6 +3,7 @@
 Entrega final del curso Desarrollo de Videojuegos.
 
 Autores: Francisco Stefanini / Gonzalo Leon
+
 -----BRUTE & JUMPER-----
 
 
