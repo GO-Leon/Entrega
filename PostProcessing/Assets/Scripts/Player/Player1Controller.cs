@@ -18,10 +18,13 @@ public class Player1Controller : PlayerController
     /// EVENTOS
     public static event Action onDeath;
     public static event Action <int> onHurt;
+    public static event Action onWeak;
+    
 
     void Start()
     {
         animPlayer.SetBool("isRun", false);
+        animPlayer.SetBool("isWeak", false);
        
 
     }
@@ -63,6 +66,12 @@ public class Player1Controller : PlayerController
             Debug.Log("Dano recibido");
             onHurt?.Invoke(lifePlayer);
             hurtSound.Play();
+
+            if (lifePlayer == 1)
+            {
+                onWeak?.Invoke();
+                animPlayer.SetBool("isWeak", true);
+            }
 
             if (lifePlayer == 0)
             {

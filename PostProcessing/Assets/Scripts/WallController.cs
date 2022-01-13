@@ -38,7 +38,6 @@ public class WallController : MonoBehaviour
             collisionTime = 0.0f;
             Debug.Log("Atacaste la pared");
             breakParticle.Stop();
-
             glassSound.Play();
 
         }
